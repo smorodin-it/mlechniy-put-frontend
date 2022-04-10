@@ -1,6 +1,7 @@
 import React from 'react';
 import { DialogActions } from '@mui/material';
 import Button from '@mui/material/Button';
+import { useFormikContext } from 'formik';
 
 interface FormButtonsProps {
   submitBtnText?: string;
@@ -10,8 +11,16 @@ interface FormButtonsProps {
 }
 
 const FormButtons = (props: FormButtonsProps): JSX.Element => {
+  const formik = useFormikContext();
+
+  const handleSubmitForm = (): void => {
+    formik.submitForm();
+  };
+
   const submitButton = (
-    <Button type={'submit'}>{props.submitBtnText ?? 'Отправить'}</Button>
+    <Button onClick={handleSubmitForm}>
+      {props.submitBtnText ?? 'Отправить'}
+    </Button>
   );
 
   if (props.isModal) {
