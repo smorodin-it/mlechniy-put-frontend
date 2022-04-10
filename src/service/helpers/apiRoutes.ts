@@ -1,6 +1,11 @@
 import { API_URL } from '../../https';
 
 export const apiRoutes = {
+  auth: {
+    login: () => `${API_URL}/auth/login`,
+    refresh: () => `${API_URL}/auth/refresh`,
+    logout: () => `${API_URL}/auth/logout`,
+  },
   users: {
     retrieve: (userId = ':userId') => `${API_URL}/user/${userId}`,
     listParticipants: () => `${API_URL}/user/participant-list`,

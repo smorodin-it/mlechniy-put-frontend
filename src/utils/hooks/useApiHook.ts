@@ -3,8 +3,8 @@ import { AxiosResponse } from 'axios';
 import { useSnackbar } from 'notistack';
 
 interface MessageArg {
-  resolveMessage?: string;
-  rejectMessage?: string;
+  resolveMessage?: (object: unknown) => string;
+  rejectMessage?: (object: unknown) => string;
 }
 
 type AxiosRequest<T> = () => Promise<AxiosResponse<T>>;
@@ -12,7 +12,7 @@ type AxiosRequest<T> = () => Promise<AxiosResponse<T>>;
 interface ReturnType<T> {
   data: T | null;
   loading: boolean;
-  handleRequest: (req: AxiosRequest<T>) => Promise<T | void>;
+  handleRequest: (req: AxiosRequest<T>, object?: unknown) => Promise<T | void>;
 }
 
 export function useApiHook<T>(
@@ -25,9 +25,10 @@ export function useApiHook<T>(
   const [data, setData] = useState<unknown | null>(null);
   const [loading, setLoading] = useState(true);
 
-  // TODO: Implement using object data in message
-
-  async function handleRequest<T>(request: AxiosRequest<T>): Promise<T | void> {
+  async function handleRequest<T>(
+    request: AxiosRequest<T>,
+    object?: unknown
+  ): Promise<T | void> {
     try {
       const resp: AxiosResponse<T> | void = await request();
 
@@ -41,13 +42,15 @@ export function useApiHook<T>(
         setData(resp.data as T);
 
         if (messages.resolveMessage) {
-          enqueueSnackbar(messages.resolveMessage, { variant: 'success' });
+          enqueueSnackbar(messages.resolveMessage(object), {
+            variant: 'success',
+          });
         }
         return resp.data;
       }
     } catch (e) {
       if (messages.rejectMessage) {
-        enqueueSnackbar(messages.rejectMessage, { variant: 'error' });
+        enqueueSnackbar(messages.rejectMessage(object), { variant: 'error' });
       }
     } finally {
       setLoading(false);

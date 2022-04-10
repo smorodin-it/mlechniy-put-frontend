@@ -11,12 +11,18 @@ import FullContainerFlexLayout, {
   formLayout,
 } from '../../../layouts/FullContainerFlexLayout';
 import { formikValidationMessages } from '../../../constants/messages';
+import { useApiHook } from '../../../utils/hooks/useApiHook';
+import AuthService from '../../../service/AuthService';
 
 interface SignInFormProps {
   a?: any;
 }
 
 const SignInForm = (props: SignInFormProps): JSX.Element => {
+  const { handleRequest } = useApiHook({
+    rejectMessage: (object) =>
+      `Ощибка при работе с ${(object as SignInFormModel).email}`,
+  });
   const formik = useFormik<SignInFormModel>({
     initialValues: {
       email: '',
@@ -28,8 +34,15 @@ const SignInForm = (props: SignInFormProps): JSX.Element => {
         .required(formikValidationMessages.required()),
       password: Yup.string().required(formikValidationMessages.required()),
     }),
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       console.log(values);
+      const data = await handleRequest(
+        () => AuthService.signIn(values),
+        values
+      );
+      if (data) {
+        console.log(data);
+      }
     },
   });
 
