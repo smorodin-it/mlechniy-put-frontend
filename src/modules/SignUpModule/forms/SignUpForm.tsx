@@ -59,8 +59,11 @@ const SignUpForm = (props: SignUpFormProps): JSX.Element => {
       teacherFullName: Yup.string(),
       teacherPosition: Yup.string(),
     }),
-    onSubmit: async (values) => {},
+    onSubmit: async (values) => {
+      console.log(values);
+    },
   });
+
   return (
     <FormikProvider value={formik}>
       <Form>
