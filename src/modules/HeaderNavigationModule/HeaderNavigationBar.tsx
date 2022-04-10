@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { MouseEvent } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,45 +11,66 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import { appRoutes } from '../../navigation/appRoutes';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const pages = ['Products', 'Pricing', 'Blog'];
+interface PageObject {
+  label: string;
+  path: string;
+}
+
+const pages: PageObject[] = [
+  {
+    label: 'Регисттрация участника',
+    path: appRoutes.participantSignUp(),
+  },
+  {
+    label: 'Вход участника',
+    path: appRoutes.participantSignIn(),
+  },
+];
+
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 const HeaderNavigationBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
-    null
-  );
+  const navigate = useNavigate();
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const handleOpenNavMenu = (event: MouseEvent<HTMLElement>): void => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>): void => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (): void => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (): void => {
     setAnchorElUser(null);
+  };
+
+  const handleNavigateToPage = (path: string): void => {
+    navigate(path);
+    handleCloseNavMenu();
   };
 
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
+          <MenuItem
             sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            onClick={() => navigate(appRoutes.landingPage())}
           >
-            LOGO
-          </Typography>
+            <Typography variant="h6" noWrap component="div">
+              LOGO
+            </Typography>
+          </MenuItem>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
@@ -81,28 +102,37 @@ const HeaderNavigationBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.label}
+                  onClick={() => handleNavigateToPage(page.path)}
+                >
+                  <Typography textAlign="center">{page.label}</Typography>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
+          <MenuItem
             sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
+            onClick={() => navigate(appRoutes.landingPage())}
           >
-            LOGO
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            <Typography variant="h6" noWrap component="div">
+              LOGO
+            </Typography>
+          </MenuItem>
+          <Box
+            sx={{
+              display: { xs: 'none', md: 'flex' },
+              flexGrow: 1,
+              justifyContent: 'end',
+            }}
+          >
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.label}
+                onClick={() => handleNavigateToPage(page.path)}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
           </Box>

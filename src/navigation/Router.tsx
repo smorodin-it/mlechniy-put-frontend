@@ -11,15 +11,31 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={appRoutes.landingPage()} element={<LandingPage />} />
-        <Route path={appRoutes.participantSignUp()} element={<SignInPage />} />
-        <Route path={appRoutes.participantSignIn()} element={<SignUpPage />} />
+        <Route path={appRoutes.landingPage()} element={<LandingPage />}>
+          <Route
+            path={appRoutes.participantSignUp()}
+            element={<SignInPage />}
+          />
+          <Route
+            path={appRoutes.participantSignIn()}
+            element={<SignUpPage />}
+          />
+
+          <Route
+            path={appRoutes.adjudicatorSignUp()}
+            element={<SignInPage />}
+          />
+          <Route
+            path={appRoutes.adjudicatorSignIn()}
+            element={<SignUpPage />}
+          />
+        </Route>
+
         <Route
           path={appRoutes.participantApp()}
           element={<ParticipantAppPage />}
         ></Route>
-        <Route path={appRoutes.adjudicatorSignUp()} element={<SignInPage />} />
-        <Route path={appRoutes.adjudicatorSignIn()} element={<SignUpPage />} />
+
         <Route
           path={appRoutes.adjudicatorApp()}
           element={<AdjudicatorAppPage />}
