@@ -1,6 +1,7 @@
 import React from 'react';
 import FullContainerFlexLayout from '../layouts/FullContainerFlexLayout';
 import SignUpForm from '../modules/SignUpModule/forms/SignUpForm';
+import Container from '@mui/material/Container';
 
 interface SignUpPageProps {
   a?: any;
@@ -13,7 +14,9 @@ const SignUpPage = (props: SignUpPageProps): JSX.Element => {
       justifyContent={'center'}
       alignItems={'center'}
     >
-      <SignUpForm />
+      <Container>
+        <SignUpForm />
+      </Container>
     </FullContainerFlexLayout>
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import FullContainerFlexLayout from '../layouts/FullContainerFlexLayout';
 import SignInForm from '../modules/SignInModule/forms/SignInForm';
+import Container from '@mui/material/Container';
 
 interface SignInPageProps {
   a?: any;
@@ -13,7 +14,9 @@ const SignInPage = (props: SignInPageProps): JSX.Element => {
       justifyContent={'center'}
       alignItems={'center'}
     >
-      <SignInForm />
+      <Container>
+        <SignInForm />
+      </Container>
     </FullContainerFlexLayout>
   );
 };

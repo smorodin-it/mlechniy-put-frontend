@@ -67,7 +67,7 @@ const SignUpForm = (props: SignUpFormProps): JSX.Element => {
           <CardContent>
             <FullContainerFlexLayout {...formLayout}>
               <SignUpFormFields />
-              <FormButtons />
+              <FormButtons submitBtnText={'Зарегестрироваться'} />
             </FullContainerFlexLayout>
           </CardContent>
         </Card>

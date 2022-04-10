@@ -40,7 +40,7 @@ const SignInForm = (props: SignInFormProps): JSX.Element => {
           <CardContent>
             <FullContainerFlexLayout {...formLayout}>
               <SignInFormFields />
-              <FormButtons />
+              <FormButtons submitBtnText={'Войти'} />
             </FullContainerFlexLayout>
           </CardContent>
         </Card>
