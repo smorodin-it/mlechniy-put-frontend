@@ -10,7 +10,6 @@ export const formLayout: CustomizableFlexLayoutProps = {
 
 const FullContainerFlexLayout = styled.div<CustomizableFlexLayoutProps>`
   width: 100%;
-
   padding: 1rem;
 
   ${CustomizableFlexLayout};
