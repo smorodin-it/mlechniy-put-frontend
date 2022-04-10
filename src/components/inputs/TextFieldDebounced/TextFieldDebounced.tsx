@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useState } from 'react';
+import TextField, { TextFieldProps } from '@mui/material/TextField';
 import useDebounce from '../../../utils/hooks/useDebounce';
-import { TextField, TextFieldProps } from '@mui/material';
 
 type TextFieldDebounceEvent = ChangeEvent<
   HTMLInputElement | HTMLTextAreaElement
