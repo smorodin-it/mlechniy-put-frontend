@@ -4,6 +4,13 @@ import * as Yup from 'yup';
 
 import { SignInFormModel } from '../../../models/AuthModel';
 import SignInFormFields from '../components/SignInFormFields';
+import FormButtons from '../../../components/buttons/FormButtons';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import FullContainerFlexLayout, {
+  formLayout,
+} from '../../../layouts/FullContainerFlexLayout';
+import { formikValidationMessages } from '../../../constants/messages';
 
 interface SignInFormProps {
   a?: any;
@@ -15,7 +22,12 @@ const SignInForm = (props: SignInFormProps): JSX.Element => {
       email: '',
       password: '',
     },
-    validationSchema: Yup.object({}),
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .email(formikValidationMessages.email())
+        .required(formikValidationMessages.required()),
+      password: Yup.string().required(formikValidationMessages.required()),
+    }),
     onSubmit: (values) => {
       console.log(values);
     },
@@ -24,7 +36,14 @@ const SignInForm = (props: SignInFormProps): JSX.Element => {
   return (
     <FormikProvider value={formik}>
       <Form>
-        <SignInFormFields />
+        <Card>
+          <CardContent>
+            <FullContainerFlexLayout {...formLayout}>
+              <SignInFormFields />
+              <FormButtons />
+            </FullContainerFlexLayout>
+          </CardContent>
+        </Card>
       </Form>
     </FormikProvider>
   );
