@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from 'styled-components/macro';
 import { Property } from 'csstype';
 
 export interface CustomizableFlexLayoutProps {

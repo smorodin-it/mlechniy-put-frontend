@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import CustomizableFlexLayout, {
   CustomizableFlexLayoutProps,
 } from './CustomizableFlexLayout';
@@ -10,7 +10,8 @@ export const formLayout: CustomizableFlexLayoutProps = {
 
 const FullContainerFlexLayout = styled.div<CustomizableFlexLayoutProps>`
   width: 100%;
-  height: 100%;
+
+  padding: 1rem;
 
   ${CustomizableFlexLayout};
 `;
