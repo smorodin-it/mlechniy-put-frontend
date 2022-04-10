@@ -10,12 +10,15 @@ import FullContainerFlexLayout, {
 } from '../../../layouts/FullContainerFlexLayout';
 import FormButtons from '../../../components/buttons/FormButtons';
 import SignUpFormFields from '../components/SignUpFormFields';
+import { useApiHook } from '../../../utils/hooks/useApiHook';
 
 interface SignUpFormProps {
   a?: any;
 }
 
 const SignUpForm = (props: SignUpFormProps): JSX.Element => {
+  const {} = useApiHook();
+
   const formik = useFormik<SignUpFormModel>({
     initialValues: {
       age: '',
@@ -56,9 +59,7 @@ const SignUpForm = (props: SignUpFormProps): JSX.Element => {
       teacherFullName: Yup.string(),
       teacherPosition: Yup.string(),
     }),
-    onSubmit: (values) => {
-      console.log(values);
-    },
+    onSubmit: async (values) => {},
   });
   return (
     <FormikProvider value={formik}>

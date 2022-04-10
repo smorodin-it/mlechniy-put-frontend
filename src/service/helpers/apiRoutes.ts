@@ -1,4 +1,4 @@
-import { API_URL } from '../https';
+import { API_URL } from '../../https';
 
 export const apiRoutes = {
   users: {

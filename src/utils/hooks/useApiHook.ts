@@ -1,5 +1,6 @@
-import { AxiosResponse } from 'axios';
 import { useState } from 'react';
+import { AxiosResponse } from 'axios';
+import { useSnackbar } from 'notistack';
 
 interface MessageArg {
   resolveMessage?: string;
@@ -20,7 +21,7 @@ export function useApiHook<T>(
     rejectMessage: undefined,
   }
 ): ReturnType<T> {
-  // const { enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
   const [data, setData] = useState<unknown | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -40,13 +41,13 @@ export function useApiHook<T>(
         setData(resp.data as T);
 
         if (messages.resolveMessage) {
-          // enqueueSnackbar(messages.resolveMessage, { variant: 'success' });
+          enqueueSnackbar(messages.resolveMessage, { variant: 'success' });
         }
         return resp.data;
       }
     } catch (e) {
       if (messages.rejectMessage) {
-        // enqueueSnackbar(messages.rejectMessage, { variant: 'error' });
+        enqueueSnackbar(messages.rejectMessage, { variant: 'error' });
       }
     } finally {
       setLoading(false);
