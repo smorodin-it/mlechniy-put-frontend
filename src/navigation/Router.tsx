@@ -14,20 +14,20 @@ const AppRouter = () => {
         <Route path={appRoutes.landingPage()} element={<LandingPage />}>
           <Route
             path={appRoutes.participantSignUp()}
-            element={<SignInPage />}
+            element={<SignUpPage />}
           />
           <Route
             path={appRoutes.participantSignIn()}
-            element={<SignUpPage />}
+            element={<SignInPage />}
           />
 
           <Route
             path={appRoutes.adjudicatorSignUp()}
-            element={<SignInPage />}
+            element={<SignUpPage />}
           />
           <Route
             path={appRoutes.adjudicatorSignIn()}
-            element={<SignUpPage />}
+            element={<SignInPage />}
           />
         </Route>
 

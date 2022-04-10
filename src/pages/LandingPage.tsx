@@ -9,7 +9,7 @@ interface LandingPageProps {
 
 const LandingPage = (props: LandingPageProps): JSX.Element => {
   return (
-    <FullScreenFlexLayout direction={'column'}>
+    <FullScreenFlexLayout flexDirection={'column'}>
       <HeaderNavigationBar />
       <Outlet />
     </FullScreenFlexLayout>
