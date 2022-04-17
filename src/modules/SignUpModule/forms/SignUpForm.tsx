@@ -53,9 +53,11 @@ const SignUpForm = (props: SignUpFormProps): JSX.Element => {
       ),
       patronymic: Yup.string(),
       phone: Yup.string().required(formikValidationMessages.required()),
-      postAddressAuthor: Yup.string(),
+      postAddressAuthor: Yup.string().required(
+        formikValidationMessages.required()
+      ),
       storyFile: Yup.string(),
-      storyTitle: Yup.string(),
+      storyTitle: Yup.string().required(formikValidationMessages.required()),
       teacherFullName: Yup.string(),
       teacherPosition: Yup.string(),
     }),
