@@ -21,7 +21,7 @@ interface SignInFormProps {
 const SignInForm = (props: SignInFormProps): JSX.Element => {
   const { handleRequest } = useApiHook({
     rejectMessage: (object) =>
-      `Ощибка при работе с ${(object as SignInFormModel).email}`,
+      `Ошибка при работе с ${(object as SignInFormModel).email}`,
   });
   const formik = useFormik<SignInFormModel>({
     initialValues: {
@@ -35,7 +35,6 @@ const SignInForm = (props: SignInFormProps): JSX.Element => {
       password: Yup.string().required(formikValidationMessages.required()),
     }),
     onSubmit: async (values) => {
-      console.log(values);
       const data = await handleRequest(
         () => AuthService.signIn(values),
         values

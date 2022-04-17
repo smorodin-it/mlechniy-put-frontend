@@ -1,6 +1,6 @@
 import { UserModel } from '../models/UserModel';
 import { AxiosResponse } from 'axios';
-import { $api } from '../https';
+import $api from '../https';
 import { ResponseAdd } from '../models/ResponeApiModel';
 import { apiRoutes } from './helpers/apiRoutes';
 

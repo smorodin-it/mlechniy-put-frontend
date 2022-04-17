@@ -17,6 +17,7 @@ const SignInFormFields = (props: SignInFormFieldsProps): JSX.Element => {
       />
       <TextFieldDebounced
         label={'Пароль'}
+        type={'password'}
         {...setPropsForTextFieldFormik('password')}
       />
     </>

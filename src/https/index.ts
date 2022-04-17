@@ -2,8 +2,7 @@ import axios from 'axios';
 
 export const API_URL = 'http://localhost:5000/api/v1';
 
-export const $api = axios.create({
-  withCredentials: true,
+const $api = axios.create({
   baseURL: API_URL,
 });
 
@@ -21,6 +20,9 @@ $api.interceptors.response.use(
   (config) => config,
   async (error) => {
     const originalRequest = error.config;
+    console.log(originalRequest);
     //  TODO: implement access / refresh token logic
   }
 );
+
+export default $api;

@@ -1,6 +1,6 @@
 import { AxiosResponse } from 'axios';
-import { SignInFormModel, SignUpFormModel } from '../models/AuthModel';
-import { $api } from '../https';
+import { SignInFormModel } from '../models/AuthModel';
+import $api from '../https';
 import { apiRoutes } from './helpers/apiRoutes';
 
 export default class AuthService {
