@@ -12,7 +12,7 @@ import FullContainerFlexLayout, {
 } from '../../../layouts/FullContainerFlexLayout';
 import { formikValidationMessages } from '../../../constants/messages';
 import { useApiHook } from '../../../utils/hooks/useApiHook';
-import AuthService from '../../../service/AuthService';
+import AuthService from '../../../services/AuthService';
 
 interface SignInFormProps {
   a?: any;
